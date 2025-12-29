@@ -131,7 +131,7 @@ let timeline = [];
 timeline.push({
   type: "html-keyboard-response",
   stimulus: `
-    <h2>Navona uzdevums</h2>
+    <h2>Neivona uzdevums</h2>
     <p>Vēro burtus, kas parādīsies uz ekrāna.</p>
     <p>Atbildi: "H" = 1, "S" = 2</p>
     <p>Atbildes jāsniedz ātri, jo limits ir 1,5 sekundes.</p>
@@ -188,7 +188,6 @@ timeline.push({
   type: "html-keyboard-response",
   stimulus: `
     <h2>Paldies par dalību!</h2>
-    <p>Failu navon_data.csv vari atsūtīt man uz aneteelizzz@gmail.com</p>
   `,
   choices: jsPsych.NO_KEYS,
   trial_duration: 10000,
@@ -205,7 +204,11 @@ jsPsych.init({
 
     let csv = columns.join(",") + "\n";
     data.values().forEach(row => {
-      let line = columns.map(col => col==="rt" ? (row[col]? (row[col]/1000).toFixed(3) : "") : row[col]).join(",");
+      let line = columns.map(col =>
+        col === "rt"
+    ? (row[col] !== null ? row[col] : "")
+    : row[col]
+        ).join(",");
       csv += line + "\n";
     });
 
