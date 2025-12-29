@@ -205,9 +205,9 @@ jsPsych.init({
     let csv = columns.join(",") + "\n";
     data.values().forEach(row => {
       let line = columns.map(col =>
-        col === "rt"
-    ? (row[col] !== null ? row[col] : "")
-    : row[col]
+      col === "rt"
+      ? (row[col] !== null ? Math.round(row[col]) : "")
+      : row[col]
         ).join(",");
       csv += line + "\n";
     });
